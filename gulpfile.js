@@ -5,7 +5,7 @@ let uglify = require("gulp-uglify");
 //格式化CSS文件
 let cleanCSS = require("gulp-clean-css");
 //格式化HTML文件
-let htmlmin = require("gulp-htmlmin")
+let htmlmin = require("gulp-htmlmin");
 //合并文件
 let concat = require("gulp-concat");
 //将ES6转为ES5
@@ -28,25 +28,25 @@ gulp.task("concat", ["uglify"], function () {
     return gulp.src("./dist/_js/*.js")
         .pipe(concat("main.js"))
         .pipe(gulp.dest("./dist/js"))
-})
+});
 
 //删除存放格式化js文件的临时目录
 gulp.task("del", ["concat"], function () {
     return del([
         "dist/_js"
     ])
-})
+});
 
 //格式化CSS文件
 gulp.task("cleanCSS", function () {
     return gulp.src("./src/css/*.css")
         .pipe(cleanCSS())
         .pipe(gulp.dest("./dist/css"))
-})
+});
 
 //格式化HTML文件
 gulp.task("htmlmin", function () {
-    var options = {
+    let options = {
         removeComments: true, //清除HTML注释
         collapseWhitespace: true, //压缩HTML
         collapseBooleanAttributes: false, //省略布尔属性的值 <input checked="true"/> ==> <input />
@@ -55,11 +55,11 @@ gulp.task("htmlmin", function () {
         removeStyleLinkTypeAttributes: true, //删除<style>和<link>的type="text/css"
         minifyJS: true, //压缩页面JS
         minifyCSS: true //压缩页面CSS
-    }
+    };
     return gulp.src("./src/index.html")
         .pipe(htmlmin(options))
         .pipe(gulp.dest("./dist"))
-})
+});
 
 //入口模块
-gulp.task("default", ["del", "cleanCSS","htmlmin"]);
+gulp.task("default", ["del", "cleanCSS", "htmlmin"]);

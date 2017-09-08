@@ -76,8 +76,8 @@
         }
 
 
-        let html = datePicker.buildUi(year, month);
-        wrap.innerHTML = html;
+        // let html =
+        wrap.innerHTML = datePicker.buildUi(year, month);
     };
 
 
